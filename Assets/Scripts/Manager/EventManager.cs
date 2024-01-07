@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
@@ -61,7 +62,7 @@ public class EventManager : MonoBehaviour
 
     void SkipButtonAct()
     {
-        if (Input.touchCount > 0 || Input.GetMouseButtonDown(0)) // PC 이용의 경우도 있기 때문에 다음과 같은 조건을 부여한다.
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) // PC 이용의 경우도 있기 때문에 다음과 같은 조건을 부여한다.
         {
             UIManager.instance.ShowSkipButton(true);
         }

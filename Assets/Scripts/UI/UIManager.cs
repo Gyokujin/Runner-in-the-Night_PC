@@ -10,13 +10,13 @@ public class UIManager : MonoBehaviour
 
     [Header("Control")]
     [SerializeField]
-    private Button jumpButton;
-    [SerializeField]
     private Text jumpCountText;
     [SerializeField]
-    private Button slideButton;
+    private GameObject jumpFade;
     [SerializeField]
     private Text slideCoolText;
+    [SerializeField]
+    private GameObject slideFade;
 
     [Header("Status")]
     [SerializeField]
@@ -75,16 +75,17 @@ public class UIManager : MonoBehaviour
 
     public void JumpCount(int count)
     {
-        jumpCountText.text = count.ToString();
+        if (count != 0)
+        {
+            jumpFade.SetActive(false);
+            jumpCountText.text = count.ToString();
+        }
+        else
+        {
+            jumpFade.SetActive(true);
+        }
 
-        if (count == 2)
-        {
-            jumpButton.interactable = true;
-        }
-        else if (count == 0)
-        {
-            jumpButton.interactable = false;
-        }
+        jumpCountText.text = count.ToString();
     }
 
     public void ButtonCooldown(string buttonName, float coolTime)
@@ -99,7 +100,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator SlideCool(float cool)
     {
-        slideButton.interactable = false;
+        slideFade.SetActive(true);
         slideCoolText.gameObject.SetActive(true);
         float time = cool;
 
@@ -110,7 +111,7 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
 
-        slideButton.interactable = true;
+        slideFade.SetActive(false);
         slideCoolText.gameObject.SetActive(false);
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private bool onGround = false;
     private bool onFall = false;
     private bool onSlide = false;
+    private bool slideAble = true;
     [SerializeField]
     private int defaultLayer; // 플레이어 레이어
     private bool onInvincible;
@@ -124,6 +126,8 @@ public class PlayerController : MonoBehaviour
         if (isDead)
             return;
 
+        GetInput();
+
         if (!onDamage && !onGround && !onJumping && !onSlide && GroundCheck(landDis))
         {
             Land();
@@ -131,6 +135,38 @@ public class PlayerController : MonoBehaviour
 
         Fall(rigid.velocity.y < -0.1f ? true : false); // 0일 경우는 작은 반동에도 애니메이션 오류가 나타난다.
         Invincible();
+    }
+
+    void GetInput()
+    {
+        if (GameManager.instance.isLive)
+        {
+            // Jump
+            if (Input.GetMouseButtonDown(1))
+            {
+                Jump();
+            }
+            if (Input.GetMouseButton(1))
+            {
+                OnJump(true);
+            }
+            else if (Input.GetMouseButtonUp(1))
+            {
+                OnJump(false);
+            }
+
+            // Attack
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) // UI 클릭시 공격이 실행되는 경우 방지
+            {
+                Attack();
+            }
+
+            // Slide
+            if (Input.GetMouseButtonDown(2))
+            {
+                Slide();
+            }
+        }
     }
 
     public void Move(bool move)
@@ -215,7 +251,7 @@ public class PlayerController : MonoBehaviour
 
     public void Slide()
     {
-        if (!isDead && GroundCheck(landDis) && !onDamage && !onSlide)
+        if (!isDead && GroundCheck(landDis) && !onDamage && !onSlide && slideAble)
         {
             StartCoroutine("SlideProcess");
         }
@@ -229,10 +265,12 @@ public class PlayerController : MonoBehaviour
     IEnumerator SlideProcess()
     {
         onSlide = true;
+        slideAble = false;
         animator.SetBool("onSlide", true);
         leftInvincible += slideTime;
         AudioManager.instance.PlayPlayerSFX(AudioManager.PlayerSFX.Slide);
         UIManager.instance.ButtonCooldown("slide", slideCool); // 슬라이드의 쿨타임 계산
+        Invoke("SlideCool", slideCool);
 
         yield return slideWait;
         onSlide = false;
@@ -245,6 +283,11 @@ public class PlayerController : MonoBehaviour
         onSlide = false;
         animator.SetBool("onSlide", false);
         gameObject.layer = defaultLayer;
+    }
+
+    void SlideCool()
+    {
+        slideAble = true;
     }
 
     public void Attack()
