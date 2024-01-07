@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Obstacle
+  - Ground
+  - PlayerBullet
+  - EnemyBullet
+  - Boss
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Player
+  - Invincible
+  - Ground
+  - FX
+  - Deadzone
+  - Enemy
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3861973475
+    locked: 0
+  - name: Middleground
+    uniqueID: 1284054955
+    locked: 0
+  - name: Foreground
+    uniqueID: 2796575313
+    locked: 0
+  - name: Environment
+    uniqueID: 1325927541
+    locked: 0
+  - name: Player
+    uniqueID: 787086607
+    locked: 0
+  - name: Enemy
+    uniqueID: 4219166681
+    locked: 0
+  - name: Obstacle
+    uniqueID: 2516531455
+    locked: 0
+  - name: FX
+    uniqueID: 3350520311
+    locked: 0
