@@ -4,6 +4,11 @@
 - Director : 김격진(Gyokujin)
 - Play : https://gyokujin.itch.io/runner-in-the-night
 
+<img src="https://github.com/Gyokujin/Runner-in-the-Night_PC/assets/74170514/c1b2e51a-b4e4-4c98-a680-87af35317b04" width=40% height=40%>
+<img src="https://github.com/Gyokujin/Runner-in-the-Night_PC/assets/74170514/a20e87c3-4159-4012-beca-82e38e5209a3" width=40% height=40%>
+<img src="https://github.com/Gyokujin/Runner-in-the-Night_PC/assets/74170514/5783e9ab-a523-4887-a2e0-4fe772fa75d0" width=40% height=40%>
+<img src="https://github.com/Gyokujin/Runner-in-the-Night_PC/assets/74170514/f6b01c6c-73be-4429-90eb-aea6e4023a90" width=40% height=40%>
+
 
 - Game Trailer (https://www.youtube.com/watch?v=vdUYwJ-8DAM)
 
